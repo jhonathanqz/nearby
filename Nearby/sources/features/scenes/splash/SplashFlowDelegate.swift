@@ -1,8 +1,8 @@
 //
 //  SplashFlowDelegate.swift
-//  Nearby
+//  NearbyApp NLW
 //
-//  Created by jhonathan queiroz on 10/12/24.
+//  Created by Arthur Rios on 06/11/24.
 //
 
 import Foundation

@@ -1,8 +1,8 @@
 //
 //  SceneDelegate.swift
-//  Nearby
+//  NearbyApp NLW
 //
-//  Created by jhonathan queiroz on 09/12/24.
+//  Created by Mateus Henrique Coelho de Paulo on 04/11/24.
 //
 
 import UIKit
@@ -12,13 +12,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     var flowController: NearbyFlowController?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        let window = UIWindow(windowScene: windowScene)
         
-        self.flowController = NearbyFlowController()
+        let window = UIWindow(windowScene: windowScene)
+        flowController = NearbyFlowController()
         let rootViewController = flowController?.start()
         
         window.rootViewController = rootViewController

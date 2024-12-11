@@ -1,14 +1,17 @@
 //
 //  Colors.swift
-//  Nearby
+//  NearbyApp NLW
 //
-//  Created by jhonathan queiroz on 09/12/24.
+//  Created by Arthur Rios on 04/11/24.
 //
 
 import Foundation
 import UIKit
+
 public struct Colors {
     // Green Shades
+    static let greenExtraLight = UIColor(red: 233/255, green: 243/255, blue: 239/255, alpha: 1)
+        // #E9F3EF
     static let greenLight = UIColor(red: 59/255, green: 155/255, blue: 98/255, alpha: 1)   // #3B9B62
     static let greenBase = UIColor(red: 37/255, green: 127/255, blue: 73/255, alpha: 1)    // #257F49
     static let greenDark = UIColor(red: 5/255, green: 41/255, blue: 20/255, alpha: 1)      // #052914
@@ -16,6 +19,7 @@ public struct Colors {
     // Red Shades
     static let redLight = UIColor(red: 253/255, green: 237/255, blue: 237/255, alpha: 1)   // #FDEDED
     static let redBase = UIColor(red: 249/255, green: 65/255, blue: 68/255, alpha: 1)      // #F94144
+
     // Gray Shades (originals)
     static let gray100 = UIColor(red: 252/255, green: 253/255, blue: 254/255, alpha: 1)    // #FCFDFE
     static let gray200 = UIColor(red: 225/255, green: 235/255, blue: 244/255, alpha: 1)    // #E1EBF4

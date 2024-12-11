@@ -1,37 +1,40 @@
 //
 //  WelcomeView.swift
-//  Nearby
+//  NearbyApp NLW
 //
-//  Created by jhonathan queiroz on 10/12/24.
+//  Created by Arthur Rios on 06/11/24.
 //
 
 import Foundation
 import UIKit
 
 class WelcomeView: UIView {
-    private let logoImageView: UIImageView = {
-        let image = UIImageView()
-        image.image = UIImage(named: "logo")
-        image.contentMode = .scaleAspectFit
-        image.translatesAutoresizingMaskIntoConstraints = false
-        return image
-    }()
+    var didTapButton: (() -> Void?)?
     
+    private let logoImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "logo"))
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+
     private let welcomeLabel: UILabel = {
         let label = UILabel()
         label.text = "Boas vindas ao Nearby!"
         label.font = Typography.titleXL
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
+        
         return label
     }()
     
     private let descriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = "Tenha cupons de vantagem para usar em seus estabelcimentos favoritos."
+        label.text = "Tenha cupons de vantagem para usar em seus estabelecimentos favoritos."
         label.font = Typography.textMD
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
+        
         return label
     }()
     
@@ -39,8 +42,8 @@ class WelcomeView: UIView {
         let label = UILabel()
         label.text = "Veja como funciona:"
         label.font = Typography.textMD
-        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
+ 
         return label
     }()
     
@@ -48,7 +51,6 @@ class WelcomeView: UIView {
         let stackView = UIStackView()
         stackView.spacing = 24
         stackView.axis = .vertical
-        
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -57,15 +59,15 @@ class WelcomeView: UIView {
         let button = UIButton(type: .system)
         button.setTitle("Começar", for: .normal)
         button.backgroundColor = Colors.greenBase
-        button.setTitleColor(Colors.gray100, for: .normal)
         button.titleLabel?.font = Typography.action
-        button.layer.cornerRadius = 8
-                        
+        button.setTitleColor(Colors.gray100, for: .normal)
+        button.layer.cornerRadius = 10
+        button.addTarget(self, action: #selector(didTap), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
-    override init(frame: CGRect)  {
+    override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
     }
@@ -76,12 +78,12 @@ class WelcomeView: UIView {
     
     private func setupUI() {
         setupTips()
-        self.addSubview(logoImageView)
-        self.addSubview(welcomeLabel)
-        self.addSubview(descriptionLabel)
-        self.addSubview(subTextForTips)
-        self.addSubview(tipsStackView)
-        self.addSubview(startButton)
+        addSubview(logoImageView)
+        addSubview(welcomeLabel)
+        addSubview(descriptionLabel)
+        addSubview(subTextForTips)
+        addSubview(tipsStackView)
+        addSubview(startButton)
         
         setupConstraints()
     }
@@ -89,49 +91,48 @@ class WelcomeView: UIView {
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             logoImageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            logoImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
+            logoImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 40),
             logoImageView.widthAnchor.constraint(equalToConstant: 48),
             logoImageView.heightAnchor.constraint(equalToConstant: 48),
             
-            welcomeLabel.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 24),
-            welcomeLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
+            welcomeLabel.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 28),
+            welcomeLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 40),
             
-            descriptionLabel.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 16),
-            descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
-            descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
+            descriptionLabel.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 12),
+            descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 40),
+            descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -40),
             
-            subTextForTips.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 24),
-            subTextForTips.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
-            subTextForTips.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
+            subTextForTips.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 32),
+            subTextForTips.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 40),
+            
             
             tipsStackView.topAnchor.constraint(equalTo: subTextForTips.bottomAnchor, constant: 24),
-            tipsStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
-            tipsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
+            tipsStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 40),
+            tipsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -40),
             
             startButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24),
-            startButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
-            startButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
+            startButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 40),
+            startButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -40),
             startButton.heightAnchor.constraint(equalToConstant: 56)
         ])
-        
+    }
+    
+    @objc
+    private func didTap() {
+        didTapButton?()
     }
     
     private func setupTips() {
         guard let icon1 = UIImage(named: "mapIcon") else { return }
-        let tip1 = TipsView(
-            icon: icon1,
-            title: "Encontre estabelecimentos",
-            description: "Veja locais perto de você que seja parceiro da Nearby.")
+        let tip1 = TipsView(icon: icon1, title: "Encontre estabelecimentos", description: "Veja locais perto de você que são parceiros Nearby")
         
-        let tip2 = TipsView(
-            icon: UIImage(named: "qrcode") ?? UIImage(),
-            title: "Ative o cupom com o QR Code",
-            description: "Escaneie o código no estabelecimento para usar o benefício.")
+        let tip2 = TipsView(icon: UIImage(named: "qrcode") ?? UIImage(),
+                            title: "Ative o cupom com QR Code",
+                            description: "Escaneie o código no estabelecimento para usar o benefício")
         
-        let tip3 = TipsView(
-            icon: UIImage(named: "ticket") ?? UIImage(),
-            title: "Garanta vantagens perto de você",
-            description: "Ative cupons onde estiver, em diferentes tipos de estabelecimento.")
+        let tip3 = TipsView(icon: UIImage(named: "ticket") ?? UIImage(),
+                            title: "Garanta vantagens perto de você",
+                            description: "Ative cupons onde estiver, em diferentes tipos de estabelecimento")
         
         tipsStackView.addArrangedSubview(tip1)
         tipsStackView.addArrangedSubview(tip2)
