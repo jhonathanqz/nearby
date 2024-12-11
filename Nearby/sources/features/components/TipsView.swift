@@ -1,26 +1,27 @@
 //
 //  TipsView.swift
-//  Nearby
+//  NearbyApp NLW
 //
-//  Created by jhonathan queiroz on 10/12/24.
+//  Created by Arthur Rios on 06/11/24.
 //
+
 import Foundation
 import UIKit
 
 public class TipsView: UIView {
+    
     private let iconImageView: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
-        
+        image.tintColor = Colors.redBase
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = Typography.titleSM
+        label.font = Typography.titleMD
         label.numberOfLines = 0
-        
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -29,26 +30,27 @@ public class TipsView: UIView {
         let label = UILabel()
         label.font = Typography.textSM
         label.numberOfLines = 0
-        
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    init(icon: UIImage, title: String, description: String) {
+    init (icon: UIImage, title: String, description: String) {
         super.init(frame: .zero)
+        setupUI()
         setupComponent(icon: icon, title: title, description: description)
     }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupComponent(icon: UIImage, title: String, description: String) {
+    private func setupComponent (icon: UIImage, title: String, description: String) {
         iconImageView.image = icon
         titleLabel.text = title
         descriptionLabel.text = description
     }
     
-    private func setupUI() {
+    private func setupUI () {
         self.addSubview(iconImageView)
         self.addSubview(titleLabel)
         self.addSubview(descriptionLabel)
@@ -56,12 +58,12 @@ public class TipsView: UIView {
         setupConstraints()
     }
     
-    private func setupConstraints() {
+    private func setupConstraints () {
         NSLayoutConstraint.activate([
             iconImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             iconImageView.topAnchor.constraint(equalTo: self.topAnchor),
-            iconImageView.heightAnchor.constraint(equalToConstant: 24),
-            iconImageView.widthAnchor.constraint(equalToConstant: 24),
+            iconImageView.heightAnchor.constraint(equalToConstant: 32),
+            iconImageView.widthAnchor.constraint(equalToConstant: 32),
             
             titleLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 16),
             titleLabel.topAnchor.constraint(equalTo: self.topAnchor),
@@ -70,9 +72,7 @@ public class TipsView: UIView {
             descriptionLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
             descriptionLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            descriptionLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-            
-        ])
+            descriptionLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            ])
     }
-    
 }

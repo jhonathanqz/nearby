@@ -1,8 +1,8 @@
 //
 //  SplashView.swift
-//  Nearby
+//  NearbyApp NLW
 //
-//  Created by jhonathan queiroz on 09/12/24.
+//  Created by Arthur Rios on 05/11/24.
 //
 
 import Foundation
@@ -23,16 +23,14 @@ class SplashView: UIView {
         image.image = UIImage(named: "logoImage")
         image.contentMode = .scaleAspectFit
         image.translatesAutoresizingMaskIntoConstraints = false
-        
         return image
     }()
     
     let backgroundImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "backgroundImage")
-        image.contentMode = .scaleAspectFit
+        image.contentMode = .scaleAspectFill
         image.translatesAutoresizingMaskIntoConstraints = false
-        
         return image
     }()
     
@@ -48,8 +46,9 @@ class SplashView: UIView {
             logoImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             logoImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             
-            backgroundImage.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-        ])
-        
+            backgroundImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            backgroundImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            backgroundImage.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            ])
     }
 }

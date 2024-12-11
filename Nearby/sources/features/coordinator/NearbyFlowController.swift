@@ -1,8 +1,8 @@
 //
 //  NearbyFlowController.swift
-//  Nearby
+//  NearbyApp NLW
 //
-//  Created by jhonathan queiroz on 09/12/24.
+//  Created by Arthur Rios on 05/11/24.
 //
 
 import Foundation
@@ -22,14 +22,20 @@ class NearbyFlowController {
         
         return navigationController
     }
-
 }
 
-extension  NearbyFlowController: SplashFlowDelegate {
+extension NearbyFlowController: SplashFlowDelegate {
     func decideNavigationFlow() {
         let contentView = WelcomeView()
         let welcomeViewController = WelcomeViewController(contentView: contentView)
+        welcomeViewController.flowDelegate = self
         navigationController?.pushViewController(welcomeViewController, animated: true)
     }
-    
+}
+
+extension NearbyFlowController: WelcomeFlowDelegate {
+    func goToHome() {
+        let homeViewController = HomeViewController()
+        navigationController?.pushViewController(homeViewController, animated: true)
+    }
 }
