@@ -10,9 +10,11 @@ import UIKit
 
 class SplashViewController: UIViewController {
     let contentView: SplashView
+    weak var delegate: SplashFlowDelegate?  //weak var, cria a variavel como sendo uma variavel menos forte, ou seja, ela poder ser limpa da memoria
     
-    init(contentView: SplashView) {
+    init(contentView: SplashView, delegate: SplashFlowDelegate) {
         self.contentView = contentView
+        self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -23,6 +25,8 @@ class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        
+        decideFlow()
     }
     
     private func setup() {
@@ -42,5 +46,11 @@ class SplashViewController: UIViewController {
             contentView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             contentView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+    }
+    
+    private func decideFlow() {
+        //decidir se o usuário vai para home ou tela de apresentacao do app
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { [weak self ] in self?.delegate?.decideNavigationFlow()
+        }
     }
 }
