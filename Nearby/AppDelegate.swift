@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  Nearby
+//  NearbyApp NLW
 //
-//  Created by jhonathan queiroz on 09/12/24.
+//  Created by Mateus Henrique Coelho de Paulo on 04/11/24.
 //
 
 import UIKit

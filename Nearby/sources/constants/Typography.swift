@@ -1,8 +1,8 @@
 //
 //  Typography.swift
-//  Nearby
+//  NearbyApp NLW
 //
-//  Created by jhonathan queiroz on 09/12/24.
+//  Created by Arthur Rios on 07/11/24.
 //
 
 import Foundation
